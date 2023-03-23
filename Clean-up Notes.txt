@@ -1,0 +1,70 @@
+
+
+TODO:
+
+	Panda1.vhd - Test the Register interface no longer needed?
+
+	Implemented design 'Check Timing' warnings (Constraints file?):
+		
+		Ports with no input delay (4): 
+			ETH1_MDIO   FMC_CLK1_M2C_N   IO0_D20_P   IO0_D21_N
+		Ports with no output delay (2): 
+			DDR4PL_RST_N   ETH1_MDIO  
+		Ports with no output delay but user has a false path constraint (1):
+			LED1_N
+		Ports with no output delay but with a timing clock defined on it or propagating through it (2)
+			ETH1_MDC   ETH1_TXCLK
+
+
+
+Software Issues
+
+	PS and PL LEDs... Work individually, but have not been included in main code.
+
+	Serial-Pass relay drive not implemented?
+
+	IN/OUT ENC - Can software-block names be matched to axes? (3 and 4 are axes 5 and 6).
+
+	axi_lite_slave.vhd - only a subset of the some ack lines are used (see lines 196-206 and 252-261)
+
+	SFP Power-Up reset not working.  Probably due to reset_i coming from axi_reset not server startup.
+	  	(clock currently comes from ST1 clock-gen which isn't set upt until kernel boots)
+
+
+Hardware that isn't implemented in GUI:
+
+	EQU Inputs
+	AUX SPI
+	System Information (CPU Temps etc)
+	LoS inputs from Quad Decoders
+	Pulse-Direction inputs.
+	Bi-directional data on the serial inputs (EnDat?)
+	Watchdog and Abort
+	
+
+Hardware that is in the GUI but isn't on the board
+
+	Terminating resistor on TTLIN is now jumper on the board, needs removing from SW Block.
+
+
+
+Things that need looking at:
+
+	Compatibility string in driver/hardware
+	IDDR -> IDDRE-4 in IDDR_sync_bit.vhd
+	pulse_queue.tcl... depth 256 not valid, changed both in and out to 512.
+	        - and all three fifo IPs defaulting to ooc (which doesn't work in RTL-module)
+	        - also, none of them had data_count ports. 
+
+	LoS not working, and nowhere to display it.
+	Reset on PandA-Brick has been wired to AXI-bus reset, which comes from ps_sys_rst (is this correct?).
+
+
+
+
+
+
+
+
+
+
