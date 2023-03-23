@@ -1,0 +1,23 @@
+
+
+https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842398/Linux+GPIO+Driver
+
+
+
+Front Panel PS Leds
+===================
+
+From console:
+
+GREEN LED:
+	echo 510 > /sys/class/gpio/export
+	echo out > /sys/class/gpio/gpio510/direction
+	echo 1 > /sys/class/gpio/gpio510/value			# high to turn led on.
+
+RED LED:
+	echo 511 > /sys/class/gpio/export
+	echo low > /sys/class/gpio/gpio511/direction	
+	echo 1 > /sys/class/gpio/gpio510/value			# high to turn led on.
+
+
+
