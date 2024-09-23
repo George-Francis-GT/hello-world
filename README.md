@@ -1,5 +1,5 @@
 # Hello-world
-Just trying out github.
+Just trying out github, and editing.
 
 ## State of play:
 
